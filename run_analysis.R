@@ -7,7 +7,7 @@
 # Encoding: UTF-8
 
 # General settings
-  directory <- "C:/Users/sbote/OneDrive/Documentos/DataScienceSpecialization/3 Getting and cleaning data/HumanActivityRecognition"
+  directory <- "WorkingDirectoryHere!"
   setwd(directory)
   if (!dir.exists("./data/")) {dir.create("./data/")}
   
@@ -110,4 +110,6 @@
   averages <- database %>%
     group_by(subject, activity, feature) %>%
     summarize(average = mean(meassure))
-  
+  if (!file.exists("./data/averages.txt")) {
+    write.table(averages, "./data/averages.txt", row.names = FALSE)
+  }
