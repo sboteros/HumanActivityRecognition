@@ -3,12 +3,12 @@
 We have the following databases:
 
 + Two databases, `X_train` and `X_test`, which contains observations on 561
-features of each individual (assignes to `train` or `test`, respectively),
+features of each individual (assigned to `train` or `test`, respectively),
 labeled according to the activity of the subject when the meassurement was
 taken.
-+ The information about the label of the activity corresponding to the
-meassures is in the databases `Y_train` and `Y_test`, which have one label per
-row.
++ The information about the label of the activity, corresponding to the
+meassures in the previous two databases, is in the databases `Y_train` and
+`Y_test`, which have one label per row.
 + The information about the meassured subject is in the databases
 `subject_train` and `subject_test`.
 
@@ -20,18 +20,24 @@ The original databases where in wide format, so we transformed it to long format
 and added the labels available in `activity_labels.txt` and `features.txt` to
 the dataset. Finally, we got one database with the following variables:
 
-+ `subject`: Subject from whic the information was meassured. Integer
++ `subject`: Subject from which the information was meassured. Integer
 identificator ranging from 1 to 30.
-+ `activity`: Activity performed by the subject when the meassured was taken; it
++ `activity`: Activity performed by the subject when the meassure was taken; it
 can be: "LAYING", "SITTING", "WALKING", "WALKING_DOWNSTAIRS", or
 "WALKING_UPSTAIRS".
 + `dataset`: String that indicates wheter the subject is in the test or the
 training dataset. It can be: "test" or "training".
 + `feature`: meassured feature; the features are available in the file
 `features.txt` of the downloaded data.
-+ `meassure`: meassurement of the feature, normalized in the range -1 to 1.
-The meaning of each feature is explained in the file `features_info.txt` of the
-downloaded data.
++ `meassure`: meassurement of the feature, normalized in the range -1 to 1. The
+meaning of each feature is explained in the file `features_info.txt` of the
+downloaded data. The units of the meassure correspond to the usual computations
+performed on each and the original units (standard gravity units 'g' for
+acceleration data, and angular velocity meassured in radians/second for the
+gyroscope): for example, and without being exhaustive, `mean`, `std`, `min`, and
+`max`, all have the same  units as the original data; `energy` is meassured in
+the squared of the  original data; `correlation` and `correlation` has no
+units.
 
 # Signals database
 
@@ -42,9 +48,9 @@ meassure * axe * subjects, where:
 
 + **Meassure**: {"body_acc", "body_gyro", "total_acc"} . Where `acc` means
 acceleration, and `gyro` are meassures from the gyroscope. The acceleration
-can be de total acceleration, as meassured by the smarphone's accelerometer;
+can be the total acceleration, as meassured by the smarphone's accelerometer;
 or the body acceleration, wich is the total acceleration minus the gravity.
-+ **Axe**: {"x", "y", "z"}. Meassures where taken in a thre-dimensional space:
++ **Axe**: {"x", "y", "z"}. Meassures where taken in a three-dimensional space:
 lineal space (for the acceleration), and angular space (for the gyroscope).
 + **Subjects**: {"train", "test"}. The database where divided randomly in
 train and test data, where 70% of participants belongs to the train dataset.
@@ -98,7 +104,7 @@ window sample. The units are radians/second.
 
 This database takes as input the `database` as explained
 [previously](#Training-and-test-database), but has only the observations where
-the variable `features` contains the strings `mean()` (whixh stands for the
+the variable `features` contains the strings `mean()` (which stands for the
 mean) or `std()` (which stands for the standard deviation). Therefore, it's
 variables are:
 
