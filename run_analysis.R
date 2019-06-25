@@ -7,11 +7,7 @@
 # Encoding: UTF-8
 
 # General settings
-  directory <- file.path("d:", "Users", "sbotero", 
-                         "ComisiÃ³n Federal de Competencia EconÃ³mica",
-                         "Varios - General", "DataScienceSpecialization",
-                         "3 Getting and cleaning data",
-                         "HumanActivityRecognition")
+  directory <- "C:/Users/sbote/OneDrive/Documentos/DataScienceSpecialization/3 Getting and cleaning data/HumanActivityRecognition"
   setwd(directory)
   if (!dir.exists("./data/")) {dir.create("./data/")}
   
@@ -32,17 +28,19 @@
     unzip("./data/dataset.zip", exdir = "./data")
   }
 
-# 2. Training and test datasets
+# 2. Merged datasets
   # 2.1. Features
     features <- read.table(file.path(".", "data", "UCI HAR Dataset",
                                      "features.txt"), 
-                           col.names = c("meassurement", "feature")) %>%
+                           col.names = c("meassurement", "feature"),
+                           stringsAsFactors = FALSE) %>%
       tbl_df
   
   # 2.2. Activities
     activities <- read.table(file.path(".", "data", "UCI HAR Dataset",
                                        "activity_labels.txt"), 
-                             col.names = c("label", "activity")) %>%
+                             col.names = c("label", "activity"),
+                             stringsAsFactors = FALSE) %>%
       tbl_df
   
   # 2.3. Dataset
@@ -103,6 +101,13 @@
   }
   rm(list = c("dataset", "meassure", "axe", "l", "m", "n"))
   signals <- spread(signals, meassure, meassurement)
+  
+# 4. Mean and standar deviations
+  moments <- database %>%
+    filter(grepl("mean()|std()", feature))
 
-
+# 5. Average features, by activity and subject
+  averages <- database %>%
+    group_by(subject, activity, feature) %>%
+    summarize(average = mean(meassure))
   

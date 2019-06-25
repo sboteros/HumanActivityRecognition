@@ -93,3 +93,33 @@ from the total acceleration (`total_acc`), meassured in standard gravity units
 'g'.
 + `body_gyro`: The angular velocity vector measured by the gyroscope for each
 window sample. The units are radians/second.
+
+# Moments
+
+This database takes as input the `database` as explained
+[previously](#Training-and-test-database), but has only the observations where
+the variable `features` contains the strings `mean()` (whixh stands for the
+mean) or `std()` (which stands for the standard deviation). Therefore, it's
+variables are:
+
++ `subject`: As [previously](#Training-and-test-database).
++ `activity`: As [previously](#Training-and-test-database).
++ `dataset`: As [previously](#Training-and-test-database).
++ `feature`: meassured feature; the features are available in the file
+`features.txt` of the downloaded data. This variable takes only the features
+which are `mean()` or `std()`.
++ `meassure`: As [previously](#Training-and-test-database).
+
+# Averages
+
+Averages takes as input the `database` as explained
+[previously](#Training-and-test-database), and groups it's contents by
+subject, activity and feature. Then, it computes the mean of the meassurements
+and assigns this value to the variable `average`. Therefore, it's variables
+are:
+
++ `subject`: As [previously](#Training-and-test-database).
++ `activity`: As [previously](#Training-and-test-database).
++ `feature`: As [previously](#Training-and-test-database).
++ `average`: Simple mean of each `feature`, `subject`, and `activity` of the
+`database`.
